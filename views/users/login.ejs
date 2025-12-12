@@ -1,18 +1,121 @@
 <% layout("/layouts/boilerplate") %>
 
-<div class="row mt-3">
-    <h1 class="col-6 offset-2">Login on Wanderlust</h1>
-    <div class="col-6 offset-2">
+<style>
+/* Center card */
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+/* Card */
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 2rem;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    animation: fadeUp 0.4s ease-in-out;
+}
+
+/* Title */
+.login-title {
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+/* Inputs */
+.form-control {
+    padding-left: 2.4rem;
+    height: 45px;
+    border-radius: 10px;
+}
+
+/* Input icons */
+.input-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+}
+
+/* Input wrapper */
+.input-group-custom {
+    position: relative;
+}
+
+/* Login button */
+.btn-login {
+    width: 100%;
+    background-color: #fe424d;
+    color: white;
+    border-radius: 30px;
+    padding: 0.7rem;
+    border: none;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn-login:hover {
+    background-color: #e63a44;
+}
+
+/* Bottom link */
+.signup-link {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+}
+
+.signup-link a {
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+<div class="login-wrapper">
+    <div class="login-card">
+
+        <h2 class="login-title">Login to Wanderlust</h2>
+
         <form action="/login" method="post" class="needs-validation" novalidate>
-            <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" name="username" id="username" class="form-control" required>
+
+            <!-- Username -->
+            <div class="mb-3 input-group-custom">
+                <i class="fa-solid fa-user input-icon"></i>
+                <input type="text" name="username" id="username" 
+                       class="form-control" placeholder="Username" required>
+                <div class="invalid-feedback">Enter your username</div>
             </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" name="password" id="password" class="form-control" required>
+
+            <!-- Password -->
+            <div class="mb-3 input-group-custom">
+                <i class="fa-solid fa-lock input-icon"></i>
+                <input type="password" name="password" id="password" 
+                       class="form-control" placeholder="Password" required>
+                <div class="invalid-feedback">Enter your password</div>
             </div>
-            <button class="btn btn-success">Login</button>
+
+            <!-- Submit -->
+            <button class="btn btn-login">Login</button>
         </form>
+
+        <!-- Link -->
+        <div class="signup-link">
+            Don't have an account?
+            <a href="/signup">Sign up</a>
+        </div>
+
     </div>
 </div>

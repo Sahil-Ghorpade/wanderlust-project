@@ -1,7 +1,64 @@
 <% layout("/layouts/boilerplate") %>
 
-<div class="row mt-3">
-    <div class="alert alert-danger" role="alert">
-        <p class="alert-heading"> <%= message %> </p>
+<style>
+.error-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.error-card {
+    width: 100%;
+    max-width: 450px;
+    padding: 2rem;
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.error-icon {
+    font-size: 3rem;
+    color: #d9534f;
+    margin-bottom: 1rem;
+}
+
+.error-card p {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.back-btn {
+    margin-top: 1.5rem;
+    background-color: #fe424d;
+    color: white;
+    padding: 0.6rem 1.4rem;
+    border-radius: 30px;
+    border: none;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.2s;
+}
+
+.back-btn:hover {
+    background-color: #e63a44;
+    color: white;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+<div class="error-wrapper">
+    <div class="error-card">
+        <i class="fa-solid fa-triangle-exclamation error-icon"></i>
+
+        <p><%= message %></p>
+
+        <a href="/listings" class="back-btn">Go Back to Listings</a>
     </div>
 </div>
