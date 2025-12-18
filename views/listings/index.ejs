@@ -118,11 +118,11 @@
                     <p class="card-text"><small></small></p>
                 </div>
                 <div class="card-body">
-                    <p class="card-text">
-                        <b><%= listing.title %></b><br>
-                        ₹ <%= listing.price.toLocaleString("en-IN") %> / night
-                        <i class="tax-info">&nbsp; +18% GST</i>
-                    </p>
+                <p class="card-text price-text" data-price="<%= listing.price %>">
+                    <b><%= listing.title %></b>
+                    <br>
+                    ₹ <span class="price-value"><%= listing.price.toLocaleString("en-IN") %></span> / night
+                </p>
                 </div>
             </div>
         </a>
@@ -130,18 +130,20 @@
 </div>
 
 <script>
-    let taxSwitch = document.getElementById("switchCheckDefault");
+    const taxSwitch = document.getElementById("switchCheckDefault");
+    const priceCards = document.querySelectorAll(".price-text");
 
     taxSwitch.addEventListener("change", () => {
-        let taxInfo = document.getElementsByClassName("tax-info");
-        for (info of taxInfo) {
+        priceCards.forEach(card => {
+            const basePrice = Number(card.dataset.price);
+            const priceSpan = card.querySelector(".price-value");
+
             if (taxSwitch.checked) {
-                info.style.display = "inline";
-                info.style.opacity = "1";
+                const taxedPrice = Math.round(basePrice * 1.18);
+                priceSpan.innerText = taxedPrice.toLocaleString("en-IN");
             } else {
-                info.style.opacity = "0";
-                setTimeout(() => info.style.display = "none", 300);
+                priceSpan.innerText = basePrice.toLocaleString("en-IN");
             }
-        }
+        });
     });
 </script>
